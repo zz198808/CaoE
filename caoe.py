@@ -2,9 +2,11 @@ import errno
 import os
 import sys
 import time
-from signal import signal, SIGINT, SIGQUIT, SIGTERM, SIGCHLD, SIGHUP, pause, SIG_DFL
+from signal import (signal, SIGINT, SIGQUIT, SIGTERM, SIGCHLD, SIGHUP, pause,
+                    SIG_DFL)
 
 __all__ = ['install']
+
 
 def install(fork=True, sig=SIGTERM):
     def _reg(gid):
@@ -29,8 +31,7 @@ def install(fork=True, sig=SIGTERM):
         # parent process
         gid = pid
         _reg(gid)
-        while True:
-            pause()
+        pause()
 
 
 def make_quit_signal_handler(gid, sig=SIGTERM):
